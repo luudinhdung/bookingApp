@@ -1,0 +1,221 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+.booking-page {
+    font-family: 'Inter', sans-serif;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 30px 20px;
+}
+
+.page-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #222;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.loading-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 300px;
+    
+    .loading-icon {
+        font-size: 40px;
+        color: #ff385c;
+        animation: spin 1s linear infinite;
+        margin-bottom: 20px;
+    }
+    
+    p {
+        font-size: 18px;
+        color: #666;
+    }
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.bookings-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 25px;
+}
+
+.booking-card {
+    display: flex;
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    
+    &:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+    }
+    
+    @media (max-width: 768px) {
+        flex-direction: column;
+    }
+}
+
+.booking-image {
+    width: 300px;
+    height: 220px;
+    overflow: hidden;
+    
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+        
+        .booking-card:hover & {
+            transform: scale(1.05);
+        }
+    }
+    
+    @media (max-width: 768px) {
+        width: 100%;
+        height: 200px;
+    }
+}
+
+.booking-details {
+    flex: 1;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.property-title {
+    font-size: 1.4rem;
+    margin: 0 0 10px 0;
+    color: #222;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    
+    .detail-icon {
+        color: #ff385c;
+        font-size: 18px;
+    }
+}
+
+.date-range {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #444;
+    font-size: 15px;
+    
+    .detail-icon {
+        color: #ff385c;
+        font-size: 16px;
+        width: 20px;
+    }
+    
+    .arrow-icon {
+        color: #888;
+        font-size: 14px;
+        margin: 0 5px;
+    }
+    
+    .nights {
+        margin-left: 10px;
+        color: #666;
+        font-size: 14px;
+    }
+}
+
+.guest-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #444;
+    font-size: 15px;
+    
+    .detail-icon {
+        color: #ff385c;
+        font-size: 16px;
+        width: 20px;
+    }
+}
+
+.price-section {
+    margin-top: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    font-size: 15px;
+    
+    .detail-icon {
+        color: #ff385c;
+        font-size: 16px;
+        width: 20px;
+    }
+    
+    .total-price {
+        font-weight: 600;
+        color: #222;
+        font-size: 16px;
+    }
+    
+    .price-breakdown {
+        color: #666;
+        font-size: 14px;
+    }
+    
+    .extra-charge {
+        width: 100%;
+        color: #ff385c;
+        font-size: 14px;
+        margin-top: 5px;
+        font-weight: 500;
+    }
+}
+
+.no-bookings {
+    text-align: center;
+    padding: 50px 20px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+    
+    h2 {
+        font-size: 1.8rem;
+        color: #222;
+        margin-bottom: 15px;
+    }
+    
+    p {
+        color: #666;
+        font-size: 16px;
+        margin-bottom: 25px;
+    }
+    
+    .explore-button {
+        padding: 12px 30px;
+        background: linear-gradient(to right, #ff385c, #ff5a5f);
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        
+        &:hover {
+            background: linear-gradient(to right, #e61e4d, #ff385c);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 56, 92, 0.3);
+        }
+    }
+}

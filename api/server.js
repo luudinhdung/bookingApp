@@ -86,6 +86,7 @@ app.post('/login',async (req,res)=>{
 
 })
 var checkLogin = (req,res,next)=>{
+
     const {token} = req.cookies
     if(token){
      const user= jwt.verify(token,jwtSecret)
@@ -108,6 +109,8 @@ var checkLogin = (req,res,next)=>{
     }
   }
   var checkAdmin = (req,res,next)=>{
+    console.log(req.data);
+  
      if(req.data.role === 'admin'){
         next()
      }else{
@@ -117,8 +120,16 @@ var checkLogin = (req,res,next)=>{
       }])
      }
   }
+
+
+app.post("/search",async (req,res)=>{
+  const data = await PlaceModel.find({ desc: { $regex: req.body.text, $options: "i" } })
+  
+  res.json(data)
+})
 app.get('/test',checkLogin,checkAdmin, (req,res)=>{
-  console.log(1);
+  console.log(req.data);
+  
 res.json([{
   pass:true,
   data:req.data,
@@ -189,6 +200,7 @@ app.put('/places', async(req,res)=>{
   const {token} = req.cookies
   if(token){
     jwt.verify(token,jwtSecret,async (err,userData)=>{
+      
       if(err)throw err
       const place= await PlaceModel.findById(id)
       if(place){
@@ -204,16 +216,20 @@ app.get('/detail',async (req,res)=>{
          return res.json(data)
 })
 app.post('/booking',async (req,res)=>{
-  const {id,userId,checkIn,checkOut} =req.body
+  const {id,userId,checkIn,checkOut,numberOfPeople} =req.body
   const place = await PlaceModel.findOne({
     _id:id,
   })
+  
+  
   const booking = await BookingModel.create({
     place,
     userBooking:userId,
     checkIn:checkIn,
     checkOut:checkOut,
-    })
+    difference: numberOfPeople -place.maxGuests 
+  })
+  
   res.json(booking)
 })
 app.get('/booking',async (req,res)=>{
